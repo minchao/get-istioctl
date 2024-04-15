@@ -6,7 +6,7 @@ This action returns the latest version of istioctl matching your input semver ra
 - uses: ./.github/actions/get-istioctl
   id: getit
   with:
-    version: "1.11.*"
+    version: "1.19.*"
 - name: Get the output time
   run: |
     echo "Selected version ${{ steps.getit.outputs.version }}"

@@ -1,6 +1,5 @@
 import core from '@actions/core'
 import {maybeDownloadIstioctl, getIstioRelease} from './src/functions.js'
-import cache from '@actions/tool-cache'
 
 try {
   let osvar = core.getInput("os")

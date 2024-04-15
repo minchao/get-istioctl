@@ -13,10 +13,10 @@ jobs:
         id: get-istioctl
         uses: istio/get-istioctl@main
         with:
-          version: '1.11.*'
+          version: '1.19.9'
       - name: Run Test
         run: |
-          if [ $(istioctl version --remote=false) == "1.11.8" ]; then
+          if [ $(istioctl version --remote=false) == "1.19.9" ]; then
              echo "Test Passed"
           else
              echo "Test Failed"

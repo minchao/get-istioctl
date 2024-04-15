@@ -1,6 +1,3 @@
-import fs from 'fs';
-import download from 'download';
-import tar from 'tar';
 import {Octokit} from '@octokit/rest';
 import semver from 'semver';
 import os from 'os';
@@ -8,12 +5,12 @@ import util from 'util';
 import cache from '@actions/tool-cache'
 import core from '@actions/core'
 
-
 export async function getIstioRelease(expr, osvar, arch) {
   const octokit = new Octokit()
   let result = await octokit.rest.repos.listReleases({
     owner: 'istio',
     repo: 'istio',
+    per_page: 100,
   })
   console.log("listReleases got status " + result.status)
   const relmap = new Map();

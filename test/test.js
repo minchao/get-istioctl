@@ -2,7 +2,7 @@ import AsyncTestUtil from 'async-test-util'
 import {maybeDownloadIstioctl, getIstioRelease} from'../src/functions.js'
 import assert from 'assert'
 import validUrl from 'valid-url'
-import fs from 'fs';
+import semver from 'semver';
 import {join} from 'path'
 
 function getLocalDir(dir)  {
@@ -27,9 +27,9 @@ it('should wait until server is online', async function() {
   this.timeout(timeout)
   var max, istioctlkey, istiokey
   const doGetRelease = async() => {
-    [max, istioctlkey, istiokey] = await getIstioRelease('1.11.*', 'local', '-local')
+    [max, istioctlkey, istiokey] = await getIstioRelease('1.19.*', 'local', '-local')
     await maybeDownloadIstioctl(istioctlkey, max.raw)
-    assert.equal(max.version, "1.11.8")
+    assert.ok(semver.gte(max.version, "1.19.9"))
     assert.ok(validUrl.isUri(istiokey))
     assert.ok(validUrl.isUri(istioctlkey))
     // TODO: check that istioctl is on the path
